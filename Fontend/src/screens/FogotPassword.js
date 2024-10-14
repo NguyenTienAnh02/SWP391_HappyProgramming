@@ -12,7 +12,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   
-  background-image: url('https://wallpapers.com/images/featured/goku-e2us8ym3rraxbnve.jpg');
+  background-image: url(');
   background-size: cover;
   background-position: center;
 `;
@@ -62,42 +62,42 @@ const ForgotPassword = () => {
 
 
     return (
-        
-            <Container>
-                <Card>
-                    <CardHeader>Password Reset</CardHeader>
-                    <div className="card-body px-5">
-                        <p className="card-text py-2">
-                            Enter your email address and we'll send you an email with instructions to
-                            reset your password.
-                        </p>
-                        <div className="form-outline">
-                            <label className="form-label" htmlFor="typeEmail">
-                                Email input
-                            </label>
-                            <input
-                                type="email"
-                                id="typeEmail"
-                                className="form-control my-3"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <button className="btn btn-primary w-100" onClick={handleResetPassword}>
-                            Reset password
-                        </button>
-                        <div className="d-flex justify-content-between mt-4">
-                            <Link to={'/login'}>
-                                Login
-                            </Link>
-                            <Link to={'/register'}>
-                                Register
-                            </Link>
-                        </div>
+
+        <Container>
+            <Card>
+                <CardHeader>Password Reset</CardHeader>
+                <div className="card-body px-5">
+                    <p className="card-text py-2">
+                        Enter your email address and we'll send you an email with instructions to
+                        reset your password.
+                    </p>
+                    <div className="form-outline">
+                        <label className="form-label" htmlFor="typeEmail">
+                            Email input
+                        </label>
+                        <input
+                            type="email"
+                            id="typeEmail"
+                            className="form-control my-3"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                     </div>
-                </Card>
-            </Container>
-        
+                    <button className="btn btn-primary w-100" onClick={handleResetPassword}>
+                        Reset password
+                    </button>
+                    <div className="d-flex justify-content-between mt-4">
+                        <Link to={'/login'}>
+                            Login
+                        </Link>
+                        <Link to={'/register'}>
+                            Register
+                        </Link>
+                    </div>
+                </div>
+            </Card>
+        </Container>
+
     );
 }
 
