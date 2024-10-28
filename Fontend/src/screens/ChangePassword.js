@@ -50,7 +50,7 @@ function ChangePass() {
             <div className="container1">
                 <div className="row px-3">
                     <div className="col-lg-10 col-xl-9 card flex-row mx-auto px-0">
-                        <div className="img-left d-none d-md-flex" />
+                        {/*<div className="img-left d-none d-md-flex" />*/}
                         <div className="card-body">
                             <h4 className="title text-center mt-4">Change Password</h4>
                             <form className="form-box px-3">

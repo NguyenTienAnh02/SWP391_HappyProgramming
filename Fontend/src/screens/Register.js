@@ -163,9 +163,9 @@ function Register() {
                                     <label>Gender</label>
                                     <br></br>
                                     <input style={{ appearance: 'auto' }} type="radio" checked={gender === 0} onChange={e => setGender(0)} name="gender" value={0} />
-                                    <label>Male</label>&emsp;
+                                    <label style={{ marginLeft: '5px' }}> Male</label>&emsp;
                                     <input style={{ appearance: 'auto' }} type="radio" checked={gender === 1} onChange={e => setGender(1)} name="gender" value={1} />
-                                    <label>Female</label>
+                                    <label style={{ marginLeft: '5px' }}> Female</label>
 
                                 </div>
                                 <div className="mb-3">

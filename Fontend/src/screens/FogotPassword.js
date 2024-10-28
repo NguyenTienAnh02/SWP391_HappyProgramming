@@ -12,7 +12,7 @@ const Container = styled.div`
   height: 100vh;
   width: 100vw;
   
-  background-image: url(');
+  background-image: url('');
   background-size: cover;
   background-position: center;
 `;

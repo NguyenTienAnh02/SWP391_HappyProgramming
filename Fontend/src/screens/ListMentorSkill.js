@@ -103,8 +103,6 @@ const ListMentorSkill = () => {
                                                         <Link to='/login'>
                                                         {m.mentorProfile.fullname}</Link>
                                                         }
-
-
                                                     </h3>
                                                     <hr />
                                                     <div className="mentee-details">

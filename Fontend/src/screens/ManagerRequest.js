@@ -6,18 +6,6 @@ import { Col, Table, Row,  } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import {Pagination} from "antd"
 
-
-
-
-
-
-
-
-
-
-
-
-
 function ManagerRequest() {
     const [token] = useState(sessionStorage.getItem('token'));
     const [currentPage, setCurrentPage] = useState(1);
@@ -79,7 +67,6 @@ function ManagerRequest() {
                             <h2>List Request</h2>
                         </Col>
                     </Row>
-                    
                     <Row>
                         <Col>
                             <Table className="table border shadow" >
@@ -90,7 +77,6 @@ function ManagerRequest() {
                                         <th>date</th>
                                         <th >link</th>
                                         <th>title</th>
-                                        
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -101,10 +87,6 @@ function ManagerRequest() {
                                             <td>{r.date}</td>
                                             <td><a href={r.link}>{r.link}</a></td>
                                             <td>{r.title}</td>
-                                            
-
-
-
                                         </tr>
                                     ))}
                                 </tbody>
@@ -121,8 +103,6 @@ function ManagerRequest() {
                     </Row>
                 </Col>
             </Row>
-
-
         </TemplateAdmin>
     );
 }

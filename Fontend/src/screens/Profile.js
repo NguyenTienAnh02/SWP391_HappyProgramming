@@ -8,10 +8,7 @@ import TemplateAdmin from "../template/TemplateAdmin";
 import TemplateMentor from "../template/TemplateMentor";
 import TemplateUser from "../template/TemplateUser";
 
-
-
 const Profile = () => {
-
 
     const [users, setUsers] = useState([]);
     const [token, setToken] = useState(sessionStorage.getItem('token'));

@@ -10,6 +10,7 @@ import { ExclamationCircleFilled } from '@ant-design/icons';
 import LogoutIcon from '@mui/icons-material/Logout';
 import PersonIcon from '@mui/icons-material/Person';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import logo from '../logo_back.png';
 
 
 
@@ -120,14 +121,14 @@ function Navbar() {
             <nav className="navbar navbar-expand-sm navbar-light bg-light fixed-top nsvj nav-header" style={{zIndex:'200'}}>
                 <div className="container-fluid">
                     <img
-                        src="https://happycode.com.es/wp-content/uploads/2022/01/HAPPY_CODE_LOGO-DUDA-gde_rgb-e1642522206836.png"
+                        src={logo}
                         width="80"
                         style={{
                             marginTop: "10px",
                             marginBottom: "10px",
                             marginRight: "20px"
                         }}
-                    />
+                     alt={"Logo"}/>
                     <button
                         className="navbar-toggler"
                         type="button"

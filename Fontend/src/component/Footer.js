@@ -72,7 +72,7 @@ export default function Footer() {
             </section>
 
             <div className='text-center p-4' style={{ backgroundColor: 'rgba(0, 0, 0, 0.05)',color:'black' }}>
-               Happy Programming - Group4 - FPT Ha Noi
+               Happy Programming - Group 1 - FPT University Ha Noi
             </div>
         </MDBFooter>
     );

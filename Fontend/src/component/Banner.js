@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import Typed from 'typed.js';
+import action from '../logo_back.png'
 
 const Banner = () => {
 
@@ -40,7 +41,7 @@ const Banner = () => {
                 <div className="avatarWrap">
                     <div className='moon'>
                         <div className="avtart">
-                            <img src='https://happycode.com.es/wp-content/uploads/2022/01/HAPPY_CODE_LOGO-DUDA-gde_rgb-e1642522206836.png' />
+                            <img src={action}  alt={"Happy Programing"}/>
                         </div>
                         <div className='orbit'>
                             <p>✈️</p>
