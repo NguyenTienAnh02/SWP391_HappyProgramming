@@ -22,7 +22,7 @@ function ManagerRequestMentor() {
 
     const handleAccept = (requestId) => {
         setSelectedRequestId(requestId);
-        setSelectedStatus(0);
+        setSelectedStatus(4);
         setModalVisible(true);
     };
 
@@ -139,7 +139,7 @@ function ManagerRequestMentor() {
             .then((resp) => resp.json())
             .then((data) => {
                 setRequest(data);
-                 console.log(data)
+                console.log(data)
             })
             .catch((err) => {
                 console.log(err.message);
@@ -183,17 +183,19 @@ function ManagerRequestMentor() {
                                                     <Tag color="orange">Pending</Tag>
                                                 ) : r.status === 2 ? (
                                                     <Tag color="red">Reject</Tag>
-                                                ) : r.status === 0 ? (
+                                                ) : r.status === 4 ? (
                                                     <Tag color="green">Accept</Tag>
                                                 ) : r.status === 3 ? (
                                                     <Tag color="success">Finish</Tag>
+                                                ) : r.status === 0 ? (
+                                                    <Tag color="success">Paid</Tag>
                                                 ) : (
                                                     <span></span>
                                                 )}
                                             </td>
 
                                             <td>
-                                                {r.status === 3 || r.status === 2 || r.status === 0 ? (
+                                                {r.status === 3 || r.status === 2 || r.status === 0 || r.status === 4 ? (
                                                     <span></span>
                                                 ) : (
                                                     <>

@@ -1,0 +1,57 @@
+CREATE DATABASE  IF NOT EXISTS `happyprogramming` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `happyprogramming`;
+-- MySQL dump 10.13  Distrib 8.0.38, for Win64 (x86_64)
+--
+-- Host: localhost    Database: happyprogramming
+-- ------------------------------------------------------
+-- Server version	9.0.1
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `password_reset_token`
+--
+
+DROP TABLE IF EXISTS `password_reset_token`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `password_reset_token` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `confirmed_at` datetime(6) DEFAULT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `expires_at` datetime(6) NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `user_id` int NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `password_reset_token`
+--
+
+LOCK TABLES `password_reset_token` WRITE;
+/*!40000 ALTER TABLE `password_reset_token` DISABLE KEYS */;
+INSERT INTO `password_reset_token` VALUES (1,'2023-06-23 18:06:12.312661','2023-06-23 18:04:07.831124','2023-06-23 18:19:07.831124','0a74de67-89d9-4653-bdf4-f1f40dd1099a',1),(2,NULL,'2023-06-23 18:08:27.721701','2023-06-23 18:23:27.721701','90b8b709-3b36-4f9f-bf2c-82a013b347dc',1),(3,'2023-06-23 18:09:12.479043','2023-06-23 18:08:59.786426','2023-06-23 18:23:59.786426','a89f421b-775c-4c73-85d5-f0d1a725cee4',1),(4,'2023-06-23 18:11:00.855736','2023-06-23 18:10:03.815292','2023-06-23 18:25:03.815292','34671dda-2b4c-4dc8-a8f4-3ef27e8615fc',1),(5,'2023-06-23 18:12:09.326391','2023-06-23 18:11:48.361348','2023-06-23 18:26:48.361348','e028bdc7-ed1c-46b6-bf80-e501a1f62fdd',1);
+/*!40000 ALTER TABLE `password_reset_token` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2024-11-10  3:18:41

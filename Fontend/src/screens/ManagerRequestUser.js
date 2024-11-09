@@ -4,8 +4,9 @@ import { Col, Table, Row, Button } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import TemplateUser from "../template/TemplateUser";
 import RateReviewIcon from '@mui/icons-material/RateReview';
-import { Pagination, Tag,Modal } from 'antd'
+import { Pagination, Tag, Modal } from 'antd'
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import PayPalButton from "../component/Paypal";
 
 function ManagerRequestUser() {
     const { id } = useParams();
@@ -17,21 +18,21 @@ function ManagerRequestUser() {
     const [currentUserID] = useState(sessionStorage.getItem('idne'))
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [viewRequest, setViewRequest] = useState([]);
-    const [allMentor,setAllMentor] = useState([])
+    const [allMentor, setAllMentor] = useState([])
 
     const showModal = (requestID) => {
         setIsModalOpen(true);
         fetch(`http://localhost:8080/api/request/${requestID}`, role1)
             .then((resp) => resp.json())
             .then((data) => {
-                setViewRequest(data);               
+                setViewRequest(data);
             })
             .catch((err) => {
                 console.log(err.message);
                 console.log(err);
             });
     }
-    
+
 
     const handleOk = () => {
         setIsModalOpen(false);
@@ -119,7 +120,6 @@ function ManagerRequestUser() {
         }
     };
 
-
     useEffect(() => {
         fetch(`http://localhost:8080/api/request/getbyuser/${id}`, role1)
             .then((resp) => resp.json())
@@ -127,7 +127,7 @@ function ManagerRequestUser() {
                 const sortRequest = data.sort((a, b) => b.requestId - a.requestId);
                 console.log(sortRequest)
                 setRequest(sortRequest);
-                
+
             })
             .catch((err) => {
                 console.log(err.message);
@@ -147,7 +147,7 @@ function ManagerRequestUser() {
             .then((resp) => resp.json())
             .then((data) => {
                 setAllMentor(data);
-                
+
             })
             .catch((err) => {
                 console.log(err.message);
@@ -174,11 +174,10 @@ function ManagerRequestUser() {
                             <Table className="table border shadow" >
                                 <thead>
                                     <tr>
-                                        
+
                                         <th >Mentor Name</th>
+                                        <th>Mentor Skills</th>
                                         <th>Title</th>
-
-
                                         <th >Link</th>
 
                                         <th>Status</th>
@@ -191,11 +190,14 @@ function ManagerRequestUser() {
                                 <tbody>
                                     {currentRequest.map((r) => (
                                         <tr key={r.requestId}>
-                                            
+
                                             <td >
-                                            {allMentor.map((m) =>
-                                                m.mentorID === r.mentorId ? m.mentorProfile.fullname : " "
-                                              )}
+                                                {allMentor.map((m) =>
+                                                    m.mentorID === r.mentorId ? m.mentorProfile.fullname : " "
+                                                )}
+                                            </td>
+                                            <td>
+                                                {r.skillName}
                                             </td>
                                             <td>{r.title}</td>
                                             <td><a target="_blank" href={r.link}>{r.link}</a></td>
@@ -204,10 +206,13 @@ function ManagerRequestUser() {
                                                 r.status === 2 ? (
                                                     <Tag color="red">Reject</Tag>
                                                 ) : r.status === 0 ? (
-                                                    <Tag color="green">Accept</Tag>
+                                                    <Tag color="green">Paid</Tag>
 
                                                 ) : r.status === 3 ? (
                                                     <Tag color="success">Finish</Tag>
+                                                ) : r.status === 4 ? (
+                                                    <Tag color="green">Accept</Tag>
+
                                                 ) : (
                                                     <span></span>
                                                 )
@@ -216,9 +221,14 @@ function ManagerRequestUser() {
                                                 {r.status === 3 ? (
                                                     <Link style={{ color: 'green' }} to={`/rating/${id}/${r.mentorId}`}><RateReviewIcon /></Link>
                                                 ) : r.status === 0 ? (
-                                                    <Button className="btn btn-danger"
-                                                        onClick={() => handleUpdateStatus(r.requestId, 3)}
-                                                    >Close</Button>
+                                                    <Button className="btn btn-danger" onClick={() => handleUpdateStatus(r.requestId, 3)}>
+                                                        Close
+                                                    </Button>
+                                                ) : r.status === 4 ? (
+                                                    <PayPalButton
+                                                        description={`Payment for request ${r.requestId}`}
+                                                        onUpdate={() => handleUpdateStatus(r.requestId, 0)}
+                                                    />
                                                 ) : (
                                                     <span></span>
                                                 )}
@@ -244,26 +254,26 @@ function ManagerRequestUser() {
                                     ))}
                                 </tbody>
                             </Table>
-                            <Modal  style={{textAlign:'center'}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-                                <h5 style={{marginBottom:"30px"}}>View Request</h5>
+                            <Modal style={{ textAlign: 'center' }} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+                                <h5 style={{ marginBottom: "30px" }}>View Request</h5>
                                 <p>Title: {viewRequest.title}</p>
                                 <p>Link: <a target="_blank" href={viewRequest.link}>{viewRequest.link}</a> </p>
-                                 Content:<p dangerouslySetInnerHTML={{ __html: viewRequest.content }}></p>
+                                Content:<p dangerouslySetInnerHTML={{ __html: viewRequest.content }}></p>
                                 <p>Date : {viewRequest.date}</p>
                                 <p>Status : {viewRequest.status === 1 ?
-                                                (<Tag color="orange">Pending</Tag>) :
-                                                viewRequest.status === 2 ? (
-                                                    <Tag color="red">Reject</Tag>
-                                                ) : viewRequest.status === 0 ? (
-                                                    <Tag color="green">Accept</Tag>
+                                    (<Tag color="orange">Pending</Tag>) :
+                                    viewRequest.status === 2 ? (
+                                        <Tag color="red">Reject</Tag>
+                                    ) : viewRequest.status === 0 ? (
+                                        <Tag color="green">Accept</Tag>
 
-                                                ) : viewRequest.status === 3 ? (
-                                                    <Tag color="success">Finish</Tag>
-                                                ) : (
-                                                    <span></span>
-                                                )
-                                            }</p>
-                                
+                                    ) : viewRequest.status === 3 ? (
+                                        <Tag color="success">Finish</Tag>
+                                    ) : (
+                                        <span></span>
+                                    )
+                                }</p>
+
                             </Modal>
                             <Pagination
                                 current={currentPage}
